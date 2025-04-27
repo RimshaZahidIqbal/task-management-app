@@ -19,7 +19,7 @@ export default function HomeScreen() {
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
                 <h1 className="text-4xl tracking-tight font-extrabold text-text-primary sm:text-5xl md:text-6xl text-center">
-                    <span>Organize your ideas with</span>
+                    <span>Organize your ideas with our Task Manager</span>
                     <br />
                     <span className="text-blue-600">Planero</span>
                 </h1>
