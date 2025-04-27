@@ -1,32 +1,47 @@
-import React from 'react'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// src/App.jsx
+import React from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import theme from './theme'
-import AuthScreen from './screens/AuthScreen'
-import { AuthProvider } from './Context/AuthContext';
+
+import theme from './theme';
+import AuthScreen from './screens/AuthScreen';
 import HomeScreen from './screens/HomeScreen';
-import Navbar from './components/NavBar';
+import Board from './components/Board';
+import ProtectedRoute from './routes/ProtectedRoute';
+import { AuthProvider } from './Context/AuthContext';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
       <AuthProvider>
         <BrowserRouter>
-
           <Routes>
-            <Route path="/" element={<HomeScreen
-            />} />
-            <Route path="/auth" element={<AuthScreen />} />
-          </Routes>
+            {/* Public Home */}
+            <Route path="/" element={<HomeScreen />} />
 
+            {/* Authentication Route */}
+            <Route path="/auth" element={<AuthScreen />} />
+
+            {/* Protected Board Route */}
+            <Route
+              path="/board"
+              element={
+                <ProtectedRoute>
+                  <Board />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
         </BrowserRouter>
-        <ToastContainer />
+
+        <ToastContainer position="top-right" />
       </AuthProvider>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

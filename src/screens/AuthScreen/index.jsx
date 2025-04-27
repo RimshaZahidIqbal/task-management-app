@@ -1,5 +1,6 @@
 // src/components/AuthScreen.jsx
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '../../assets/icons';
 import { useAuth } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
@@ -14,7 +15,7 @@ const AuthScreen = () => {
     const [form, setForm] = useState(initForm);
 
     const { login, register, error } = useAuth();
-
+    const navigate = useNavigate();
     const authText = isLogin ? "Don't have an account?" : 'Already have an account?';
 
     const handleChange = (event) => {
@@ -35,6 +36,7 @@ const AuthScreen = () => {
                 toast.success('Registered successfully');
             }
             setForm(initForm);
+            navigate('/board');
         } catch (err) {
             // error is already set in context
             toast.error(err.message);
